@@ -1,37 +1,58 @@
+import { LoginService } from './../service/loginService/login.service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CheckboxModule, WavesModule, ButtonsModule, InputsModule, IconsModule, CardsModule } from 'angular-bootstrap-md';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AuthInterceptorService } from 'src/service/interceptors/auth-interceptor.service';
+import { ItemService } from 'src/service/itemService/item.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+
+
+
+
 
 const appRoutes: Routes = [
   {
       path: '',
       pathMatch: 'full',
       component: LoginComponent
-  }
+  },
+      { path: 'login', component: LoginComponent },
+      { path: 'home', component: HomeComponent }
   ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    UserPanelComponent,
+
   ],
   imports: [
-    CheckboxModule,
-    CardsModule,
-    IconsModule,
-    WavesModule,
     ReactiveFormsModule,
-    InputsModule,
-    ButtonsModule,
-    FormsModule,
+    HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    FormsModule,
   ],
-  providers: [],
+  providers: [LoginService, ItemService,
+    {
+    provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

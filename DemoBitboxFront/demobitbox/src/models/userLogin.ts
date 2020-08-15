@@ -1,5 +1,5 @@
 import { Role } from './role';
-export class User {
+export class UserLogin {
     username: string;
-    roles: Role[];
+    password: string;
 }

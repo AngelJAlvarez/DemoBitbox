@@ -1,0 +1,128 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Demobitbox</a></mdb-navbar-brand>
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            {{username}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <div class="btn-group" mdbDropdown>
+              <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+              <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item" href="#" (click)="logOut()">log Out</a>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </links>
+  </mdb-navbar>
+  <div class="menu-option-items">
+    <button type="button" mdbBtn color="light-green" (click)="createItemModal.show()" mdbWavesEffect>Create item     <mdb-icon fas icon="plus"></mdb-icon></button>
+  </div>
+  <div class=items-content>
+    <p *ngFor="let item of items;">
+      <mdb-card class="item-panel">
+        <div class="button-box"> 
+          <mdb-icon far class="edit" icon="edit" (click)="showEditModal(item, editModal)"></mdb-icon> 
+          <mdb-icon far class="trash" icon="trash-alt" (click)="showDeleteModal(item, deleteModal)"></mdb-icon>
+        </div>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h5 class="item-code">Item code: {{item.code}}</h5>
+          </mdb-card-title>
+          <mdb-card-text>{{item.description}}</mdb-card-text>
+          <label class="color-grey">State: {{item.state}}</label>
+         <div>
+             <p>Creation Date: 
+                <label>{{item.creationDate}}</label>
+             </p>
+             <p>Creator: {{item.creator.name}}</p>
+             <p>Price: {{item.price}}€</p>
+         </div>
+        </mdb-card-body>
+      </mdb-card>
+    </p>
+  </div>
+
+<div mdbModal #createItemModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form [formGroup]="formItemCreate" class="text-center border border-light p-5 srink" >
+
+          <p class="h4 mb-4">Create Item</p>
+      
+          <input formControlName="itemCode" maxlength="9" type="text" class="form-control mb-4" placeholder="Item code">
+          <textarea formControlName="description" class="form-control mb-4"  rows="4" cols="50" placeholder="Description"></textarea>
+          <select class="browser-default custom-select" class="form-control mb-4" disabled>
+            <option selected value="Active">Active</option>
+            <option value="Discontinued">Discontinued</option>
+          </select>
+          <input formControlName="price" maxlength="9" type="text" class="form-control mb-4" placeholder="Price">
+      </form>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createItemModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" (click)="createItem(createItemModal)" [disabled]="!formItemCreate.valid" class="relative waves-light" mdbWavesEffect>Save item</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #deleteModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Are you sure to delete this item?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Item code: {{itemSelectedToDelete?.code}}</p>
+        <textarea  class="form-control mb-4"  rows="4" cols="50" disabled>{{itemSelectedToDelete?.description}}</textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="deleteModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="confirmDelete()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #editModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel" >Are you sure to edit this item?</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formItemEdit" class="text-center border border-light p-5 srink" >
+          <p class="h4 mb-4">Edit Item</p>
+          <input formControlName="itemCode" disabled maxlength="9" type="text" class="form-control mb-4" placeholder="Item code">
+          <textarea formControlName="description" class="form-control mb-4"  rows="4" cols="50" placeholder="Description"></textarea>
+          <select formControlName="state" class="browser-default custom-select" class="form-control mb-4" placeholder="asds">
+            <option value="Active">Active</option>
+            <option value="Discontinued">Discontinued</option>
+          </select>
+          <input formControlName="price" maxlength="9" type="text" class="form-control mb-4" placeholder="Price">
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="editModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect [disabled]="!formItemEdit.valid" (click)="confirmEdit()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

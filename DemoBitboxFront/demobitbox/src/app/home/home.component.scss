@@ -1,0 +1,47 @@
+.menu-option-items{
+    margin-top: 20px;
+    margin-right: 45px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    text-align: right;
+}
+.items-content{
+    display: flex;
+    flex-wrap: wrap;
+    
+    .item-panel::-webkit-scrollbar {
+        display: none; 
+    }
+    
+    .item-panel {
+        margin: 40px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-y: scroll;
+        width: 300px;
+        height: 300px; 
+        
+        .item-code {
+            margin-top: 20px;
+        }
+        .button-box {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+
+            .edit{
+                margin-right:20px ;
+                color:#3f729b;
+                cursor: pointer;
+            }
+
+            .trash{
+                color: red;
+                cursor: pointer;
+            }
+        }
+       
+    }
+    
+    
+}
