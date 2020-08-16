@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDirective, ModalBackdropComponent } from 'angular-bootstrap-md';
 import { Role } from 'src/models/role';
 import { AlertService } from 'src/service/alertService/alert.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-user-panel',
@@ -24,6 +25,9 @@ export class UserPanelComponent implements OnInit {
   editUser = new User();
   editUsermodal: ModalDirective;
   userToEdit: User;
+  showEditWarning: boolean;
+  helper = new JwtHelperService();
+  decodedToken = this.helper.decodeToken(localStorage.getItem('token'));
 
   constructor(private loginService: LoginService,
               public router: Router,
@@ -55,7 +59,11 @@ export class UserPanelComponent implements OnInit {
 
   }
 
-  remove(id: number) {
+  logOut() {
+    this.loginService.logout();
+  }
+
+  deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe(data => {
       if (data) {
       this.alertService.showSuccess('Successful removal', 'User removal');
@@ -69,10 +77,6 @@ export class UserPanelComponent implements OnInit {
     this.userService.getUsers().subscribe(data => {this.userList = data; });
   }
 
-  changeValue(id: number, property: string, event: any) {
-    this.editField = event.target.textContent;
-  }
-
   showCreateUserModal(modal: ModalDirective) {
     this.createUsermodal = modal;
     this.createUsermodal.show();
@@ -80,7 +84,12 @@ export class UserPanelComponent implements OnInit {
 
   showEditUserModal(modal: ModalDirective, userToEdit: User) {
     this.userToEdit = userToEdit;
-    console.log(this.userToEdit);
+
+    if (this.userToEdit.name === this.decodedToken.sub) {
+      this.showEditWarning = true;
+    } else {
+      this.showEditWarning = false;
+    }
     if (this.userToEdit.roles.find(element => element.name === 'ADMIN')) {
       this.formUserEdit.get('adminRol').setValue(true);
     } else {
@@ -103,6 +112,7 @@ export class UserPanelComponent implements OnInit {
       if (data) {
         this.alertService.showSuccess('Successful creation', 'User creation');
         this.createUsermodal.hide();
+        this.getUsers();
       }
     }, error => {
       this.alertService.showError('Error: You cannot create users with the same username', 'User creation');
@@ -110,6 +120,7 @@ export class UserPanelComponent implements OnInit {
   }
 
   ConfirmEditUserModal() {
+
     this.editUser.name = this.formUserEdit.get('username').value;
     this.editUser.id = this.userToEdit.id;
     if (!this.formUserEdit.get('adminRol').value) {
@@ -119,8 +130,14 @@ export class UserPanelComponent implements OnInit {
     }
     this.userService.editUser(this.editUser).subscribe(data => {
       if (data) {
-        this.alertService.showSuccess('Successful edit', 'User edit');
-        this.editUsermodal.hide();
+        if (this.showEditWarning) {
+          this.loginService.logout();
+        } else {
+          this.alertService.showSuccess('Successful edit', 'User edit');
+          this.editUsermodal.hide();
+          this.getUsers();
+        }
+
       }
     }, error => {
       this.alertService.showError('Error', 'User edit');

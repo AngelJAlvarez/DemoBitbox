@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.dto.DeactivatedItemDto;
 import com.example.demo.dto.ItemDto;
 import com.example.demo.models.Item;
 import com.example.demo.models.enums.StateEnum;
@@ -13,7 +14,7 @@ public interface ItemService {
 
     public List<ItemDto> searchByState(StateEnum State);
 
-    public ItemDto deactivateItem(ItemDto itemDto, String reason);
+    public ItemDto deactivateItem(DeactivatedItemDto deactivatedItemDto);
 
     public Item createItem (ItemDto itemDto);
 

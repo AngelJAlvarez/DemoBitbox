@@ -1,3 +1,6 @@
+import { Supplier } from './../../models/supplier';
+import { PriceReduction } from './../../models/priceReduction';
+import { DeactivatedItem } from './../../models/deactivatedItem';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Item } from 'src/models/item';
@@ -39,7 +42,14 @@ export class ItemService {
   editItem(item: Item) {
     return this.http.post<number>(this.url + 'editItem', item);
   }
-  deactivationItem(item) {
-    return this.http.post<number>(this.url + 'editItem', item);
+  deactivationItem(deactivatedItem: DeactivatedItem) {
+    return this.http.post<DeactivatedItem>(this.url + 'deactivateItem', deactivatedItem);
+  }
+  getPriceReductions() {
+    return this.http.get<PriceReduction[]>(this.url + 'getPriceReduction');
+  }
+
+  getSupplier() {
+    return this.http.get<Supplier[]>(this.url + 'getSupplier');
   }
 }

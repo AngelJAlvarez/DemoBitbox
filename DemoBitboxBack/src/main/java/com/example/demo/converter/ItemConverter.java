@@ -19,7 +19,6 @@ public class ItemConverter {
         itemEntity.setPrice(ItemDto.getPrice());
         itemEntity.setState(ItemDto.getState());
         itemEntity.setCreator(ItemDto.getCreator());
-        itemEntity.setReasonForDeactivation(ItemDto.getReasonForDeactivation());
         itemEntity.setSuppliers(ItemDto.getSuppliers());
         return  itemEntity;
     }
@@ -33,8 +32,8 @@ public class ItemConverter {
         itemDto.setDescription(ItemEntity.getDescription());
         itemDto.setPriceReduction(ItemEntity.getPriceReduction());
         itemDto.setState(ItemEntity.getState());
+        itemDto.setPrice(ItemEntity.getPrice());;
         itemDto.setCreator(ItemEntity.getCreator());
-        itemDto.setReasonForDeactivation(ItemEntity.getReasonForDeactivation());
         itemDto.setSuppliers(ItemEntity.getSuppliers());
         return itemDto;
 

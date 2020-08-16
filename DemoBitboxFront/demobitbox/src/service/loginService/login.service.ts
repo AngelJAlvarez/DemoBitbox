@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { Token } from 'src/models/token';
 import { Role } from 'src/models/role';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class LoginService {
   user: User;
   roles: Role;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   authorization(user): Observable<Token> {
     return this.http.post<Token>(this.url, user);
@@ -24,6 +26,7 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 
   getlogIn() {
@@ -31,15 +34,17 @@ export class LoginService {
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
     const current = new Date();
     const timestamp = current.getTime();
-    if (decodedToken.exp * 1000 >= timestamp) {
+    if (localStorage.getItem('token')) {
+      if (decodedToken.exp * 1000 >= timestamp) {
 
-      return true;
+        return true;
 
-    } else {
+      } else {
 
-      this.logout();
+        this.logout();
 
-      return false;
+        return false;
+      }
     }
   }
 

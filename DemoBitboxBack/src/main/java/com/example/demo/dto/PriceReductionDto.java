@@ -1,15 +1,8 @@
-package com.example.demo.models;
+package com.example.demo.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.sql.Date;
 
-@Entity
-public class PriceReduction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PriceReductionDto {
     private Long id;
     private Double reducedPrice;
     private String startDate;
@@ -27,10 +20,6 @@ public class PriceReduction {
         return reducedPrice;
     }
 
-    public void setReducedPrice(Double reducedPrice) {
-        this.reducedPrice = reducedPrice;
-    }
-
     public String getStartDate() {
         return startDate;
     }
@@ -46,4 +35,9 @@ public class PriceReduction {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    public void setReducedPrice(Double reducedPrice) {
+        this.reducedPrice = reducedPrice;
+    }
+
 }

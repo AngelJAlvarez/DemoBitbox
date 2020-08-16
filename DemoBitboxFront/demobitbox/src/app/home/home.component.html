@@ -1,4 +1,3 @@
-<div toastContainer></div>
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
     <mdb-navbar-brand><a class="navbar-brand" href="#">Demobitbox</a></mdb-navbar-brand>
     <links>
@@ -137,9 +136,24 @@
           <textarea formControlName="description" class="form-control mb-4" maxlength="200" rows="4" cols="50" placeholder="Description"></textarea>
           <select formControlName="creator" class="browser-default custom-select" class="form-control mb-4">
             <option *ngFor="let user of users;" value="{{user.id}}">{{user.name}}</option>
-            
           </select>
           <input formControlName="price" maxlength="9" type="text" class="form-control mb-4" placeholder="Price">
+          <p (click)="test1.toggle()" class="text-aling-left"> <mdb-icon fas class="plus" icon="plus" ></mdb-icon>   Add item price reduction</p>
+          <div mdbCollapse #test1="bs-collapse">
+            <input formControlName="reducedPrice" class="form-control mb-4" type="text" placeholder="Price reduction">
+            <div class="date-box">
+              <label for="starDate">Start Date<input formControlName="startDate" class="form-control mb-4" type="date" name="starDate"></label>
+              <label for="endDate">End Date<input formControlName="endDate" class="form-control mb-4" type="date" name="endDate"></label>
+            </div>
+          </div>
+
+          <p (click)="test.toggle()" class="text-aling-left"> <mdb-icon fas class="plus" icon="plus" ></mdb-icon>   Add supplier</p>
+          <div mdbCollapse #test="bs-collapse">
+            <select formControlName="supplier" class="browser-default custom-select" class="form-control mb-4">
+              <option *ngFor="let supplier1 of suppliers;" value="{{supplier1.name}}">{{supplier1.name}}</option>
+            </select>
+          </div>
+          
       </form>
       </div>
       <div class="modal-footer">

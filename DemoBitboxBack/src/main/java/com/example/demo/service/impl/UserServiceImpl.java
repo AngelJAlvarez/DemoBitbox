@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.example.demo.converter.UserConverter;
 
-import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -21,14 +21,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDto createUser(UserDto userDto) {
+    public boolean createUser(UserDto userDto) {
         userRepository.save(UserConverter.dtoToEntity(userDto));
-        return null;
+        return true;
     }
 
     @Override
-    public int deleteUser(int userId) {
-        return 0;
+    public boolean editUser(UserDto userdto) {
+        User user = UserConverter.dtoToEntity(userdto);
+        Optional<User> user2 = userRepository.findById(user.getId());
+        user.setPassword(user2.get().getPassword());
+        userRepository.save(user);
+        return true;
+    }
+
+    @Override
+    public boolean deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+        return true;
     }
 
     @Override

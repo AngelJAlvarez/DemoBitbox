@@ -1,1 +1,97 @@
-<p>item-info works!</p>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Demobitbox</a></mdb-navbar-brand>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item " (click)="router.navigate(['home'])">
+                <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item " (click)="router.navigate(['users'])">
+                <a class="nav-link waves-light" mdbWavesEffect>User Panel<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+                <a class="nav-link">
+                    {{decodedToken.sub}}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <div class="btn-group" mdbDropdown>
+                        <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                            <a class="dropdown-item" href="#" (click)="logOut()">log Out</a>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </links>
+</mdb-navbar>
+<div class="small-panel-box">
+    <mdb-card>
+        <mdb-card-body>
+            <mdb-card-title class="title-box">
+                <h2>Item</h2>
+            </mdb-card-title>
+            <div class="">
+                <p>Item Id:
+                    <label for="">{{item.id}}</label>
+                </p>
+                <p>Item code:
+                    <label for="">{{item.code}}</label>
+                </p>
+                <p>Creation date:
+                    <label for="">{{item.creationDate}}</label>
+                </p>
+                <p>Item description:
+                    <label for="">{{item.description}}</label>
+                </p>
+                <p>Item price:
+                    <label for="">{{item.price}}€</label>
+                </p>
+                <p>Item creator:
+                    <label for="">{{item.creator.name}}</label>
+                </p>
+
+            </div>
+        </mdb-card-body>
+    </mdb-card>
+</div>
+
+<div class="big-panel-box">
+    <mdb-card>
+        <mdb-card-body>
+            <mdb-card-title>
+                <h4>Suppliers list</h4>
+            </mdb-card-title> 
+            <div class="reduction-box">
+                 <div class="box" *ngFor="let supplier of item.suppliers;">
+                    <p>Id: {{supplier.id}}</p>
+                    <p>Name: {{supplier.name}}</p>
+                    <p>Country: {{supplier.country.name}}</p>
+                </div>
+            </div>
+        </mdb-card-body>
+    </mdb-card>
+</div>
+
+<div class="big-panel-box">
+    <mdb-card>
+        <mdb-card-body>
+            <mdb-card-title>
+                <h4>Price reductions list</h4>
+            </mdb-card-title>
+            <div class="reduction-box">
+                <div class="box" *ngFor="let priceReduction of item.priceReduction;">
+                    <p>Id: {{priceReduction.id}}</p>
+                    <p>Price reduction: {{priceReduction.reducedPrice}}%</p>
+                    <p>Start Date: {{priceReduction.startDate}}</p>
+                    <p>End date: {{priceReduction.endDate}}</p>
+                </div>
+                
+            </div>
+
+        </mdb-card-body>
+    </mdb-card>
+</div>

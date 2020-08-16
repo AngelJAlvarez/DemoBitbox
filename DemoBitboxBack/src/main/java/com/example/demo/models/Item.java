@@ -15,6 +15,7 @@ public class Item {
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private int code;
 
     private Double price;
@@ -28,16 +29,14 @@ public class Item {
     @ManyToMany
     private List<Supplier> suppliers;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PriceReduction> priceReduction;
 
     private String creationDate;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn
     private User creator;
-
-    private String reasonForDeactivation;
 
     public List<Supplier> getSuppliers() {
         return suppliers;
@@ -55,20 +54,12 @@ public class Item {
         this.creator = creator;
     }
 
-    public String getReasonForDeactivation() {
-        return reasonForDeactivation;
-    }
-
     public StateEnum getState() {
         return state;
     }
 
     public void setState(StateEnum state) {
         this.state = state;
-    }
-
-    public void setReasonForDeactivation(String reasonForDeactivation) {
-        this.reasonForDeactivation = reasonForDeactivation;
     }
 
     public Double getPrice() {

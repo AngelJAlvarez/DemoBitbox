@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example.demo</OriginalElement>
+  <nodes>
+    <node x="794.4310511951817" y="781.0">com.example.demo.config.jwt.JwtTokenUtil</node>
+    <node x="4545.487803500845" y="159.5">com.example.demo.models.Supplier</node>
+    <node x="1993.4310511951812" y="847.0">com.example.demo.service.impl.UserServiceImpl</node>
+    <node x="4851.66532855731" y="891.5">com.example.demo.repository.ItemRepository</node>
+    <node x="1443.8563546960268" y="1691.0">com.example.demo.service.impl.SupplierServiceImpl</node>
+    <node x="152.43105119518168" y="858.0">com.example.demo.models.jwt.JwtResponse</node>
+    <node x="2228.237803500845" y="0.0">com.example.demo.models.Role</node>
+    <node x="4494.16532855731" y="439.0">com.example.demo.dto.ItemDto</node>
+    <node x="2760.6028285573107" y="1148.5">com.example.demo.converter.PriceReductionConverter</node>
+    <node x="4333.54032855731" y="869.5">com.example.demo.converter.ItemConverter</node>
+    <node x="4745.16532855731" y="550.0">com.example.demo.repository.SupplierRepository</node>
+    <node x="3578.6028285573107" y="1182.5">com.example.demo.repository.DeactivatedItemRepository</node>
+    <node x="4026.5403285573107" y="1126.5">com.example.demo.service.ItemService</node>
+    <node x="3163.6028285573107" y="1148.5">com.example.demo.converter.DectivatedItemConverter</node>
+    <node x="3922.612803500845" y="450.0">com.example.demo.models.Item</node>
+    <node x="1409.1810511951812" y="1182.5">com.example.demo.service.SupplierService</node>
+    <node x="546.0" y="1988.0">com.example.demo.DemoApplication</node>
+    <node x="3092.5438546960268" y="858.5">com.example.demo.dto.DeactivatedItemDto</node>
+    <node x="2816.612803500845" y="148.5">com.example.demo.models.User</node>
+    <node x="2712.394495223977" y="858.5">com.example.demo.dto.PriceReductionDto</node>
+    <node x="3914.487803500845" y="148.5">com.example.demo.models.PriceReduction</node>
+    <node x="3658.458333333333" y="550.0">com.example.demo.repository.PriceReductionRepository</node>
+    <node x="4931.04032855731" y="148.0">com.example.demo.models.enums.StateEnum</node>
+    <node x="516.0" y="1126.0">com.example.demo.controller.jwt.JwtAuthenticationController</node>
+    <node x="4553.487803500845" y="0.0">com.example.demo.models.Country</node>
+    <node x="16.0" y="1988.0">com.example.demo.service.PriceReductionService</node>
+    <node x="3507.8528285573107" y="858.5">com.example.demo.models.DeactivatedItem</node>
+    <node x="2564.431051195181" y="538.0">com.example.demo.repository.UserRepository</node>
+    <node x="1537.6810511951812" y="516.0">com.example.demo.service.UserService</node>
+    <node x="2275.431051195181" y="516.0">com.example.demo.converter.UserConverter</node>
+    <node x="293.0" y="1988.0">com.example.demo.DemoApplicationTests</node>
+    <node x="978.1810511951817" y="1612.5">com.example.demo.config.WebSecurityConfig</node>
+    <node x="2202.9749999999995" y="148.5">com.example.demo.dto.UserDto</node>
+    <node x="4121.801884528514" y="1601.5">com.example.demo.service.impl.ItemServiceImpl</node>
+    <node x="0.0" y="1159.0">com.example.demo.config.jwt.JwtAuthenticationEntryPoint</node>
+    <node x="933.6810511951817" y="1148.0">com.example.demo.config.jwt.JwtRequestFilter</node>
+    <node x="0.0" y="2068.0">com.example.demo.service.impl.PriceReductionServiceImpl</node>
+    <node x="1757.6810511951812" y="527.0">com.example.demo.Mapper.UserMapper</node>
+    <node x="3396.8643845285146" y="1469.0">com.example.demo.controller.Controller</node>
+    <node x="587.4310511951817" y="846.5">com.example.demo.models.jwt.JwtRequest</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.demo.repository.ItemRepository" target="com.example.demo.models.enums.StateEnum">
+      <point x="58.75" y="-27.0" />
+      <point x="5027.91532855731" y="419.0" />
+      <point x="5037.91532855731" y="419.0" />
+      <point x="11.875" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.models.Item" target="com.example.demo.models.Supplier">
+      <point x="14.375" y="-115.0" />
+      <point x="4051.987803500845" y="369.0" />
+      <point x="4555.487803500845" y="369.0" />
+      <point x="-50.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.models.Item">
+      <point x="30.454545454545496" y="-104.5" />
+      <point x="4319.75642998306" y="1369.0" />
+      <point x="4323.04032855731" y="1369.0" />
+      <point x="4323.04032855731" y="751.0" />
+      <point x="4072.112803500845" y="751.0" />
+      <point x="34.5" y="115.0" />
+    </edge>
+    <edge source="com.example.demo.repository.UserRepository" target="com.example.demo.models.User">
+      <point x="0.0" y="-27.0" />
+      <point x="2654.431051195181" y="419.0" />
+      <point x="2857.112803500845" y="419.0" />
+      <point x="-18.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.service.SupplierService">
+      <point x="-151.875" y="-237.0" />
+      <point x="3406.9893845285146" y="1429.0" />
+      <point x="1535.1810511951812" y="1429.0" />
+      <point x="42.0" y="15.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.UserServiceImpl" target="com.example.demo.repository.UserRepository">
+      <point x="108.75" y="-71.5" />
+      <point x="2232.681051195181" y="761.0" />
+      <point x="2594.431051195181" y="761.0" />
+      <point x="-60.0" y="27.0" />
+    </edge>
+    <edge source="com.example.demo.dto.ItemDto" target="com.example.demo.models.enums.StateEnum">
+      <point x="71.875" y="-126.0" />
+      <point x="4681.04032855731" y="409.0" />
+      <point x="4990.41532855731" y="409.0" />
+      <point x="-35.625" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.converter.UserConverter" target="com.example.demo.models.User">
+      <point x="33.5" y="-49.0" />
+      <point x="2442.931051195181" y="389.0" />
+      <point x="2830.112803500845" y="389.0" />
+      <point x="-45.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.converter.ItemConverter" target="com.example.demo.dto.ItemDto">
+      <point x="33.75" y="-49.0" />
+      <point x="4502.29032855731" y="761.0" />
+      <point x="4517.16532855731" y="761.0" />
+      <point x="-92.0" y="126.0" />
+    </edge>
+    <edge source="com.example.demo.dto.ItemDto" target="com.example.demo.models.User">
+      <point x="-100.625" y="-126.0" />
+      <point x="4508.54032855731" y="359.0" />
+      <point x="2920.112803500845" y="359.0" />
+      <point x="45.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.config.WebSecurityConfig" target="com.example.demo.config.jwt.JwtAuthenticationEntryPoint">
+      <point x="-117.66666666666697" y="-93.5" />
+      <point x="1037.0143845285147" y="1449.0" />
+      <point x="248.0" y="1449.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.dto.DeactivatedItemDto">
+      <point x="-30.375" y="-237.0" />
+      <point x="3528.4893845285146" y="1369.0" />
+      <point x="2738.9778285573107" y="1369.0" />
+      <point x="2738.9778285573107" y="1106.0" />
+      <point x="3111.7438546960266" y="1106.0" />
+      <point x="-76.80000000000018" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.repository.DeactivatedItemRepository">
+      <point x="-30.454545454545496" y="-104.5" />
+      <point x="4258.847339073969" y="1299.0" />
+      <point x="3702.6028285573107" y="1299.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.example.demo.models.Supplier" target="com.example.demo.models.Country">
+      <point x="-30.0" y="-49.0" />
+      <point x="4575.487803500845" y="128.0" />
+      <point x="4579.487803500845" y="128.0" />
+      <point x="-26.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.UserServiceImpl" target="com.example.demo.Mapper.UserMapper">
+      <point x="-65.25" y="-71.5" />
+      <point x="2058.681051195181" y="751.0" />
+      <point x="1924.6810511951812" y="751.0" />
+      <point x="0.0" y="38.0" />
+    </edge>
+    <edge source="com.example.demo.dto.DeactivatedItemDto" target="com.example.demo.models.User">
+      <point x="-24.0" y="-60.0" />
+      <point x="3164.5438546960268" y="751.0" />
+      <point x="2875.112803500845" y="751.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.repository.ItemRepository">
+      <point x="121.8181818181821" y="-104.5" />
+      <point x="4411.120066346697" y="1429.0" />
+      <point x="4974.66532855731" y="1429.0" />
+      <point x="4974.66532855731" y="1096.0" />
+      <point x="5027.91532855731" y="1096.0" />
+      <point x="58.75" y="27.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.dto.ItemDto">
+      <point x="91.36363636363649" y="-104.5" />
+      <point x="4380.665520892151" y="1389.0" />
+      <point x="4666.16532855731" y="1389.0" />
+      <point x="4666.16532855731" y="761.0" />
+      <point x="4701.16532855731" y="761.0" />
+      <point x="92.0" y="126.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.converter.DectivatedItemConverter">
+      <point x="-91.36363636363649" y="-104.5" />
+      <point x="4197.938248164878" y="1319.0" />
+      <point x="3360.6028285573107" y="1319.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.SupplierServiceImpl" target="com.example.demo.service.SupplierService">
+      <point x="0.0" y="-15.0" />
+      <point x="1543.8563546960268" y="1439.0" />
+      <point x="1451.1810511951812" y="1439.0" />
+      <point x="-42.0" y="15.0" />
+    </edge>
+    <edge source="com.example.demo.dto.UserDto" target="com.example.demo.models.Role">
+      <point x="-29.25" y="-60.0" />
+      <point x="2232.2249999999995" y="128.0" />
+      <point x="2266.0378035008453" y="128.0" />
+      <point x="-25.199999999999818" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.Mapper.UserMapper" target="com.example.demo.models.User">
+      <point x="83.5" y="-38.0" />
+      <point x="2008.1810511951812" y="379.0" />
+      <point x="2821.112803500845" y="379.0" />
+      <point x="-54.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.dto.UserDto">
+      <point x="-111.375" y="-237.0" />
+      <point x="3447.4893845285146" y="1409.0" />
+      <point x="2264.931051195181" y="1409.0" />
+      <point x="2264.931051195181" y="369.0" />
+      <point x="2261.4749999999995" y="369.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.converter.UserConverter" target="com.example.demo.dto.UserDto">
+      <point x="-100.5" y="-49.0" />
+      <point x="2308.931051195181" y="369.0" />
+      <point x="2284.875" y="369.0" />
+      <point x="23.40000000000009" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.PriceReductionServiceImpl" target="com.example.demo.service.PriceReductionService">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.example.demo.controller.jwt.JwtAuthenticationController" target="com.example.demo.config.jwt.JwtTokenUtil">
+      <point x="45.375" y="-71.5" />
+      <point x="742.875" y="1086.0" />
+      <point x="877.6810511951817" y="1086.0" />
+      <point x="-83.25" y="137.5" />
+    </edge>
+    <edge source="com.example.demo.service.UserService" target="com.example.demo.dto.UserDto">
+      <point x="0.0" y="-49.0" />
+      <point x="1637.6810511951812" y="359.0" />
+      <point x="2214.6749999999993" y="359.0" />
+      <point x="-46.80000000000018" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.models.enums.StateEnum">
+      <point x="151.875" y="-237.0" />
+      <point x="3710.7393845285146" y="1439.0" />
+      <point x="5108.16532855731" y="1439.0" />
+      <point x="5108.16532855731" y="409.0" />
+      <point x="5085.41532855731" y="409.0" />
+      <point x="59.375" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.repository.ItemRepository" target="com.example.demo.models.Item">
+      <point x="-58.75" y="-27.0" />
+      <point x="4910.41532855731" y="721.0" />
+      <point x="4141.112803500845" y="721.0" />
+      <point x="103.5" y="115.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.converter.ItemConverter">
+      <point x="60.90909090909099" y="-104.5" />
+      <point x="4350.210975437605" y="1369.0" />
+      <point x="4468.54032855731" y="1369.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.dto.PriceReductionDto">
+      <point x="-50.625" y="-237.0" />
+      <point x="3508.2393845285146" y="1379.0" />
+      <point x="2724.1271880293602" y="1379.0" />
+      <point x="2724.1271880293602" y="1096.0" />
+      <point x="2743.061161890644" y="1096.0" />
+      <point x="-61.33333333333337" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.UserServiceImpl" target="com.example.demo.models.User">
+      <point x="65.25" y="-71.5" />
+      <point x="2189.181051195181" y="751.0" />
+      <point x="2553.931051195181" y="751.0" />
+      <point x="2553.931051195181" y="409.0" />
+      <point x="2848.112803500845" y="409.0" />
+      <point x="-27.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.converter.PriceReductionConverter" target="com.example.demo.dto.PriceReductionDto">
+      <point x="-143.25" y="-49.0" />
+      <point x="2808.3528285573107" y="1096.0" />
+      <point x="2804.394495223977" y="1096.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.models.DeactivatedItem" target="com.example.demo.models.Item">
+      <point x="21.25" y="-60.0" />
+      <point x="3614.1028285573107" y="751.0" />
+      <point x="3980.112803500845" y="751.0" />
+      <point x="-57.5" y="115.0" />
+    </edge>
+    <edge source="com.example.demo.repository.SupplierRepository" target="com.example.demo.models.Supplier">
+      <point x="0.0" y="-15.0" />
+      <point x="4841.16532855731" y="289.0" />
+      <point x="4655.487803500845" y="289.0" />
+      <point x="50.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.repository.UserRepository">
+      <point x="-70.875" y="-237.0" />
+      <point x="3487.9893845285146" y="1389.0" />
+      <point x="2678.931051195181" y="1389.0" />
+      <point x="2678.931051195181" y="761.0" />
+      <point x="2654.431051195181" y="761.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.example.demo.config.jwt.JwtRequestFilter" target="com.example.demo.config.jwt.JwtTokenUtil">
+      <point x="-110.5" y="-49.5" />
+      <point x="83.25" y="137.5" />
+    </edge>
+    <edge source="com.example.demo.service.impl.UserServiceImpl" target="com.example.demo.converter.UserConverter">
+      <point x="21.75" y="-71.5" />
+      <point x="2145.681051195181" y="741.0" />
+      <point x="2342.431051195181" y="741.0" />
+      <point x="-67.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.config.jwt.JwtRequestFilter" target="com.example.demo.service.impl.UserServiceImpl">
+      <point x="110.5" y="-49.5" />
+      <point x="1265.1810511951817" y="1106.0" />
+      <point x="2123.931051195181" y="1106.0" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.service.UserService">
+      <point x="-131.625" y="-237.0" />
+      <point x="3427.2393845285146" y="1419.0" />
+      <point x="1587.6810511951812" y="1419.0" />
+      <point x="-50.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.repository.ItemRepository">
+      <point x="131.625" y="-237.0" />
+      <point x="3690.4893845285146" y="1419.0" />
+      <point x="4963.66532855731" y="1419.0" />
+      <point x="4963.66532855731" y="1096.0" />
+      <point x="4910.41532855731" y="1096.0" />
+      <point x="-58.75" y="27.0" />
+    </edge>
+    <edge source="com.example.demo.repository.PriceReductionRepository" target="com.example.demo.models.PriceReduction">
+      <point x="0.0" y="-15.0" />
+      <point x="3778.458333333333" y="419.0" />
+      <point x="3971.6306606437024" y="419.0" />
+      <point x="-22.85714285714289" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.service.ItemService">
+      <point x="0.0" y="-104.5" />
+      <point x="4289.301884528514" y="1289.0" />
+      <point x="4241.04032855731" y="1289.0" />
+      <point x="71.5" y="71.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.dto.ItemDto">
+      <point x="70.875" y="-237.0" />
+      <point x="3629.7393845285146" y="1379.0" />
+      <point x="4655.16532855731" y="1379.0" />
+      <point x="46.0" y="126.0" />
+    </edge>
+    <edge source="com.example.demo.models.Item" target="com.example.demo.models.User">
+      <point x="-100.625" y="-115.0" />
+      <point x="3936.987803500845" y="389.0" />
+      <point x="2902.112803500845" y="389.0" />
+      <point x="27.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.converter.DectivatedItemConverter" target="com.example.demo.models.DeactivatedItem">
+      <point x="49.25" y="-49.0" />
+      <point x="3409.8528285573107" y="1086.0" />
+      <point x="3529.1028285573107" y="1086.0" />
+      <point x="-63.75" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.models.DeactivatedItem">
+      <point x="-60.90909090909099" y="-104.5" />
+      <point x="4228.392793619423" y="1309.0" />
+      <point x="3568.1028285573107" y="1309.0" />
+      <point x="3568.1028285573107" y="1106.0" />
+      <point x="3614.1028285573107" y="1106.0" />
+      <point x="21.25" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.repository.DeactivatedItemRepository" target="com.example.demo.models.DeactivatedItem">
+      <point x="0.0" y="-15.0" />
+      <point x="3702.6028285573107" y="1106.0" />
+      <point x="3656.6028285573107" y="1106.0" />
+      <point x="63.75" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.models.Item">
+      <point x="30.375" y="-237.0" />
+      <point x="3589.2393845285146" y="1359.0" />
+      <point x="4016.0403285573107" y="1359.0" />
+      <point x="4016.0403285573107" y="761.0" />
+      <point x="4026.112803500845" y="761.0" />
+      <point x="-11.5" y="115.0" />
+    </edge>
+    <edge source="com.example.demo.models.Item" target="com.example.demo.models.PriceReduction">
+      <point x="-43.125" y="-115.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.controller.jwt.JwtAuthenticationController" target="com.example.demo.models.jwt.JwtResponse">
+      <point x="-136.125" y="-71.5" />
+      <point x="561.375" y="1106.0" />
+      <point x="359.9310511951817" y="1106.0" />
+      <point x="0.0" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.models.DeactivatedItem" target="com.example.demo.models.User">
+      <point x="-63.75" y="-60.0" />
+      <point x="3529.1028285573107" y="721.0" />
+      <point x="2884.112803500845" y="721.0" />
+      <point x="9.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.dto.DeactivatedItemDto">
+      <point x="-121.81818181818176" y="-104.5" />
+      <point x="4167.483702710333" y="1329.0" />
+      <point x="3153.1028285573107" y="1329.0" />
+      <point x="3153.1028285573107" y="1106.0" />
+      <point x="3150.1438546960267" y="1106.0" />
+      <point x="-38.40000000000009" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.ItemService" target="com.example.demo.models.Item">
+      <point x="-35.75" y="-71.0" />
+      <point x="4133.79032855731" y="761.0" />
+      <point x="4049.112803500845" y="761.0" />
+      <point x="11.5" y="115.0" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.repository.UserRepository">
+      <point x="-152.27272727272725" y="-104.5" />
+      <point x="4137.029157255787" y="1339.0" />
+      <point x="2689.931051195181" y="1339.0" />
+      <point x="2689.931051195181" y="761.0" />
+      <point x="2714.431051195181" y="761.0" />
+      <point x="60.0" y="27.0" />
+    </edge>
+    <edge source="com.example.demo.Mapper.UserMapper" target="com.example.demo.models.Role">
+      <point x="-83.5" y="-38.0" />
+      <point x="1841.1810511951812" y="349.0" />
+      <point x="1805.6249999999998" y="349.0" />
+      <point x="1805.6249999999998" y="118.0" />
+      <point x="2240.837803500845" y="118.0" />
+      <point x="-50.40000000000009" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.repository.PriceReductionRepository">
+      <point x="10.125" y="-237.0" />
+      <point x="3568.9893845285146" y="1349.0" />
+      <point x="3837.1028285573107" y="1349.0" />
+      <point x="3837.1028285573107" y="721.0" />
+      <point x="3778.458333333333" y="721.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.example.demo.converter.PriceReductionConverter" target="com.example.demo.models.PriceReduction">
+      <point x="143.25" y="-49.0" />
+      <point x="3094.8528285573107" y="1086.0" />
+      <point x="2953.862803500845" y="1086.0" />
+      <point x="2953.862803500845" y="409.0" />
+      <point x="3948.7735177865593" y="409.0" />
+      <point x="-45.71428571428578" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.models.Item" target="com.example.demo.models.enums.StateEnum">
+      <point x="71.875" y="-115.0" />
+      <point x="4109.487803500845" y="389.0" />
+      <point x="4942.91532855731" y="389.0" />
+      <point x="-83.125" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.converter.UserConverter">
+      <point x="-91.125" y="-237.0" />
+      <point x="3467.7393845285146" y="1399.0" />
+      <point x="2476.431051195181" y="1399.0" />
+      <point x="67.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.config.WebSecurityConfig" target="com.example.demo.config.jwt.JwtRequestFilter">
+      <point x="0.0" y="-93.5" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="com.example.demo.service.impl.UserServiceImpl" target="com.example.demo.service.UserService">
+      <point x="-108.75" y="-71.5" />
+      <point x="2015.1810511951812" y="761.0" />
+      <point x="1687.6810511951812" y="761.0" />
+      <point x="50.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.dto.DeactivatedItemDto" target="com.example.demo.models.Item">
+      <point x="24.0" y="-60.0" />
+      <point x="3212.5438546960268" y="731.0" />
+      <point x="3934.112803500845" y="731.0" />
+      <point x="-103.5" y="115.0" />
+    </edge>
+    <edge source="com.example.demo.dto.ItemDto" target="com.example.demo.models.Supplier">
+      <point x="14.375" y="-126.0" />
+      <point x="4623.54032855731" y="319.0" />
+      <point x="4595.487803500845" y="319.0" />
+      <point x="-10.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.models.Supplier">
+      <point x="91.125" y="-237.0" />
+      <point x="3649.9893845285146" y="1399.0" />
+      <point x="4734.66532855731" y="1399.0" />
+      <point x="4734.66532855731" y="299.0" />
+      <point x="4635.487803500845" y="299.0" />
+      <point x="30.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.converter.DectivatedItemConverter" target="com.example.demo.dto.DeactivatedItemDto">
+      <point x="-147.75" y="-49.0" />
+      <point x="3212.8528285573107" y="1106.0" />
+      <point x="3188.5438546960268" y="1106.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.service.ItemService">
+      <point x="50.625" y="-237.0" />
+      <point x="3609.4893845285146" y="1369.0" />
+      <point x="4098.04032855731" y="1369.0" />
+      <point x="-71.5" y="71.0" />
+    </edge>
+    <edge source="com.example.demo.controller.jwt.JwtAuthenticationController" target="com.example.demo.service.impl.UserServiceImpl">
+      <point x="136.125" y="-71.5" />
+      <point x="833.625" y="1096.0" />
+      <point x="2036.9310511951812" y="1096.0" />
+      <point x="-87.0" y="71.5" />
+    </edge>
+    <edge source="com.example.demo.config.WebSecurityConfig" target="com.example.demo.service.impl.UserServiceImpl">
+      <point x="117.66666666666697" y="-93.5" />
+      <point x="1272.3477178618487" y="1449.0" />
+      <point x="2196.875" y="1449.0" />
+      <point x="2196.875" y="1106.0" />
+      <point x="2210.931051195181" y="1106.0" />
+      <point x="87.0" y="71.5" />
+    </edge>
+    <edge source="com.example.demo.service.ItemService" target="com.example.demo.dto.DeactivatedItemDto">
+      <point x="-107.25" y="-71.0" />
+      <point x="4062.2903285573107" y="1076.0" />
+      <point x="3265.343854696027" y="1076.0" />
+      <point x="76.80000000000018" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.dto.ItemDto" target="com.example.demo.models.PriceReduction">
+      <point x="-43.125" y="-126.0" />
+      <point x="4566.04032855731" y="339.0" />
+      <point x="4040.202089215131" y="339.0" />
+      <point x="45.714285714285666" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.service.ItemService" target="com.example.demo.models.enums.StateEnum">
+      <point x="107.25" y="-71.0" />
+      <point x="4276.79032855731" y="1106.0" />
+      <point x="5097.16532855731" y="1106.0" />
+      <point x="5097.16532855731" y="419.0" />
+      <point x="5061.66532855731" y="419.0" />
+      <point x="35.625" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.service.impl.ItemServiceImpl" target="com.example.demo.models.enums.StateEnum">
+      <point x="152.2727272727276" y="-104.5" />
+      <point x="4441.574611801242" y="1449.0" />
+      <point x="5231.143854696027" y="1449.0" />
+      <point x="5231.143854696027" y="399.0" />
+      <point x="5109.16532855731" y="399.0" />
+      <point x="83.125" y="60.5" />
+    </edge>
+    <edge source="com.example.demo.service.impl.UserServiceImpl" target="com.example.demo.dto.UserDto">
+      <point x="-21.75" y="-71.5" />
+      <point x="2102.181051195181" y="369.0" />
+      <point x="2238.075" y="369.0" />
+      <point x="-23.40000000000009" y="60.0" />
+    </edge>
+    <edge source="com.example.demo.models.User" target="com.example.demo.models.Role">
+      <point x="-29.25" y="-60.0" />
+      <point x="2845.862803500845" y="128.0" />
+      <point x="2316.437803500845" y="128.0" />
+      <point x="25.199999999999818" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.controller.jwt.JwtAuthenticationController" target="com.example.demo.models.jwt.JwtRequest">
+      <point x="-45.375" y="-71.5" />
+      <point x="652.125" y="1106.0" />
+      <point x="680.9310511951817" y="1106.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="com.example.demo.service.ItemService" target="com.example.demo.dto.ItemDto">
+      <point x="35.75" y="-71.0" />
+      <point x="4205.29032855731" y="1096.0" />
+      <point x="4644.16532855731" y="1096.0" />
+      <point x="4644.16532855731" y="761.0" />
+      <point x="4609.16532855731" y="761.0" />
+      <point x="0.0" y="126.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.repository.SupplierRepository">
+      <point x="111.375" y="-237.0" />
+      <point x="3670.2393845285146" y="1409.0" />
+      <point x="4841.16532855731" y="1409.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.example.demo.controller.Controller" target="com.example.demo.converter.PriceReductionConverter">
+      <point x="-10.125" y="-237.0" />
+      <point x="3548.7393845285146" y="1359.0" />
+      <point x="2951.6028285573107" y="1359.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="com.example.demo.converter.ItemConverter" target="com.example.demo.models.Item">
+      <point x="-101.25" y="-49.0" />
+      <point x="4367.29032855731" y="741.0" />
+      <point x="4095.112803500845" y="741.0" />
+      <point x="57.5" y="115.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6" x="1789.7990620490637" y="704.3888888888888" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

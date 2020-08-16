@@ -2,13 +2,16 @@ package com.example.demo.service.impl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.config.jwt.JwtTokenUtil;
+import com.example.demo.converter.DectivatedItemConverter;
+import com.example.demo.dto.DeactivatedItemDto;
 import com.example.demo.dto.ItemDto;
+import com.example.demo.models.DeactivatedItem;
 import com.example.demo.models.Item;
+import com.example.demo.models.User;
 import com.example.demo.models.enums.StateEnum;
+import com.example.demo.repository.DeactivatedItemRepository;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ItemService;
@@ -25,6 +28,8 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private DeactivatedItemRepository deactivatedItemRepository;
 
     @Override
     public Item createItem(ItemDto itemDto) {
@@ -54,7 +59,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemDto deactivateItem(ItemDto itemDto, String reason) {
+    public ItemDto deactivateItem(DeactivatedItemDto deactivatedItemDto) {
+        deactivatedItemDto.setUser(userRepository.findByName(deactivatedItemDto.getUser().getName()));
+        Item item = deactivatedItemDto.getItem();
+        item.setState(StateEnum.Discontinued);
+        itemRepository.save(item);
+        DeactivatedItem deactivatedItem = DectivatedItemConverter.dtoToEntity(deactivatedItemDto);
+        deactivatedItemRepository.save(deactivatedItem);
         return null;
     }
 

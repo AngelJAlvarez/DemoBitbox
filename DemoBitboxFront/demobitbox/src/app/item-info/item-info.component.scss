@@ -1,0 +1,33 @@
+.small-panel-box {
+    display: flex;
+    flex-wrap: wrap;
+    mdb-card{
+        margin: 20px;
+        flex: auto;
+    }
+    .creator-box {
+        .roles{
+            margin: 5px;
+        }
+    }
+}
+
+.big-panel-box {
+    mdb-card{
+        margin: 20px;
+    }
+
+    .reduction-box{
+        display: flex;
+        flex-wrap: wrap;
+        .box{
+            border: 0.5px solid lightgrey;
+            padding: 10px;
+            margin-right: 30px;
+            margin-top: 10px;
+        }
+    }
+}
+.title-box>h2 {
+    margin-bottom: 10px;
+}

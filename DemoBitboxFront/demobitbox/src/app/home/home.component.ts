@@ -1,3 +1,5 @@
+import { Supplier } from './../../models/supplier';
+import { DeactivatedItem } from './../../models/deactivatedItem';
 import { AlertService } from './../../service/alertService/alert.service';
 import { UserService } from './../../service/userService/user.service';
 import { ItemService } from './../../service/itemService/item.service';
@@ -11,6 +13,7 @@ import { States } from '../../models/enum';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { User } from 'src/models/User';
+import { PriceReduction } from 'src/models/priceReduction';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,12 +35,19 @@ export class HomeComponent implements OnInit {
   adminOption: boolean;
   users: User[];
   creator: Creator;
-  itemSelectedToDeactivated: Item;
   deactivationModal: ModalDirective;
   itemSelectedToDeactivation: Item;
   formDiscontinued: FormGroup;
   checkBoxActive = false;
   checkBoxDiscontinued = false;
+  deactivatedItem = new DeactivatedItem();
+  creatorToDeactivation: Creator;
+  helper = new JwtHelperService();
+  decodedToken = this.helper.decodeToken(localStorage.getItem('token'));
+  priceReductions: PriceReduction[];
+  priceReductionsToEdit = new PriceReduction();
+  checkOverlaping: boolean;
+  suppliers: Supplier[];
 
   constructor(private loginService: LoginService,
               public router: Router,
@@ -47,14 +57,24 @@ export class HomeComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit(): void {
+
     if (this.loginService.getlogIn()) {
       this.router.navigate(['home']);
     } else {
       this.router.navigate(['login']);
     }
 
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+    this.itemService.getSupplier().subscribe(data => {
+      this.suppliers = data;
+    }, error => {
+      this.alertService.showError('Error loading Supplier', 'Item load');
+    });
+
+    this.itemService.getPriceReductions().subscribe(data => {
+      this.priceReductions = data;
+    }, error => {
+      this.alertService.showError('Error loading PriceReductions', 'Item load');
+    });
 
     if (this.loginService.getRolUser().find(element => element.authority === 'ROLE_ADMIN')) {
       this.adminOption = true;
@@ -75,7 +95,11 @@ export class HomeComponent implements OnInit {
       itemCode: [{value: null, disabled: true}, [Validators.required, Validators.pattern('^[0-9]*$')]],
       description: [null, [Validators.required]],
       creator: [null, [Validators.required]],
-      price: [null, [Validators.pattern('^[0-9]*$')]]
+      price: [null, [Validators.pattern('^[0-9]*$')]],
+      reducedPrice: [null],
+      startDate: [null],
+      endDate: [null],
+      supplier: ['']
     });
 
     this.getItemsAndUser();
@@ -167,20 +191,64 @@ export class HomeComponent implements OnInit {
   }
 
   confirmEdit() {
+    this.checkOverlaping = true;
+    this.priceReductionsToEdit.startDate = this.formItemEdit.get('startDate').value;
+    this.priceReductionsToEdit.endDate = this.formItemEdit.get('endDate').value;
+    this.priceReductionsToEdit.reducedPrice = this.formItemEdit.get('reducedPrice').value;
     this.itemSelectedToEdit.price = this.formItemEdit.get('price').value;
     this.itemSelectedToEdit.description = this.formItemEdit.get('description').value;
     this.creator = new Creator();
     this.creator.id = this.formItemEdit.get('creator').value;
     this.itemSelectedToEdit.creator = this.creator;
-    this.itemService.editItem(this.itemSelectedToEdit).subscribe(data => {
-       if (data) {
-        this.getItemByFilter();
-        this.editModal.hide();
-        this.alertService.showSuccess('Successful edit', 'Item Edit');
+    console.log(this.itemSelectedToEdit.priceReduction);
+    this.itemSelectedToEdit.priceReduction.forEach(priceReductionInItem => {
+      let e2start = new Date(priceReductionInItem.startDate);
+      let e2end = new Date(priceReductionInItem.endDate);
+      let e1start = new Date(this.priceReductionsToEdit.startDate);
+      let e1end = new Date(this.priceReductionsToEdit.endDate);
+      if ((e1start > e2start && e1start < e2end || e2start > e1start && e2start < e1end)) {
+        this.checkOverlaping = false;
       }
-     }, error => {
-      this.alertService.showError('An error has occurred', 'Item Edit');
     });
+    if (this.checkOverlaping) {
+      if (this.priceReductionsToEdit.endDate !== null
+          && this.priceReductionsToEdit.startDate !== null
+          && this.priceReductionsToEdit.reducedPrice !== null) {
+          // tslint:disable-next-line: max-line-length
+          this.itemSelectedToEdit.priceReduction.push({startDate: this.priceReductionsToEdit.startDate, endDate: this.priceReductionsToEdit.endDate, reducedPrice: this.priceReductionsToEdit.reducedPrice});
+      }
+      console.log(this.itemSelectedToEdit.priceReduction);
+      if (this.formItemEdit.get('supplier').value) {
+        if (this.itemSelectedToEdit.suppliers.find(element => element.name === this.formItemEdit.get('supplier').value) === undefined) {
+          // tslint:disable-next-line: max-line-length
+          this.itemSelectedToEdit.suppliers.push(this.suppliers.find(element => element.name === this.formItemEdit.get('supplier').value));
+          this.itemService.editItem(this.itemSelectedToEdit).subscribe(data => {
+            if (data) {
+             this.getItemByFilter();
+             this.editModal.hide();
+             this.formItemEdit.get('supplier').setValue(null)
+             this.alertService.showSuccess('Successful edit', 'Item Edit');
+           }
+          }, error => {
+           this.alertService.showError('An error has occurred', 'Item Edit');
+         });
+        } else {
+          this.alertService.showError('This Supplier already are asociated with the item', 'Item Edit');
+        }
+      } else {
+        this.itemService.editItem(this.itemSelectedToEdit).subscribe(data => {
+          if (data) {
+           this.getItemByFilter();
+           this.editModal.hide();
+           this.alertService.showSuccess('Successful edit', 'Item Edit');
+         }
+        }, error => {
+         this.alertService.showError('An error has occurred', 'Item Edit');
+       });
+      }
+    } else {
+      this.alertService.showError('A reduced price already exists on that date', 'Item Edit');
+    }
   }
 
   confirmDelete() {
@@ -195,12 +263,17 @@ export class HomeComponent implements OnInit {
   }
 
   confirmDeactivation() {
-    this.itemSelectedToDeactivation.reasonForDeactivation = this.formDiscontinued.get('description').value;
-    this.itemSelectedToDeactivation.state = States.Discontinued;
-    this.itemService.deactivationItem(this.itemSelectedToDeactivation).subscribe(data => {
+    this.creatorToDeactivation = new Creator();
+    this.creatorToDeactivation.id = 0;
+    this.creatorToDeactivation.name = this.decodedToken.sub;
+    this.deactivatedItem.reasonForDeactivation = this.formDiscontinued.get('description').value;
+    this.deactivatedItem.item = this.itemSelectedToDeactivation;
+    this.deactivatedItem.user = this.creatorToDeactivation;
+    this.itemService.deactivationItem(this.deactivatedItem).subscribe(data => {
       if (data) {
         this.getItemByFilter();
         this.deactivationModal.hide();
+        this.alertService.showSuccess('Successful Deactivation', 'Item Deactivation');
       }
     }, error => {
       this.alertService.showError('An error has occurred', 'Item Deactivation');

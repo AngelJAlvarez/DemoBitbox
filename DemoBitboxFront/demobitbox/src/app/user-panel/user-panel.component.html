@@ -1,3 +1,33 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+  <mdb-navbar-brand><a class="navbar-brand" href="#">Demobitbox</a></mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item " (click)="router.navigate(['home'])">
+        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active"  (click)="router.navigate(['users'])">
+        <a class="nav-link waves-light" mdbWavesEffect>User Panel<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link">
+          {{decodedToken.sub}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+              <a class="dropdown-item" href="#" (click)="logOut()">log Out</a>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
 <div class="card">
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">User table</h3>
     <div class="card-body">
@@ -23,7 +53,7 @@
             <td>
               <span class="table-remove">
                 <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" (click)="showEditUserModal(editUserModal, user)">Edit</button>
-                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(user.id)">Remove</button>
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="deleteUser(user.id)">Remove</button>
               </span>
             </td>
           </tr>
@@ -47,7 +77,6 @@
             <div class="roles-box">
               <mdb-checkbox [default]="true" formControlName="userRol">User</mdb-checkbox>
               <mdb-checkbox [default]="true" formControlName="adminRol">Admin</mdb-checkbox>
-
             </div>
             
         </form>
@@ -76,7 +105,9 @@
               <mdb-checkbox [default]="true" formControlName="adminRol">Admin</mdb-checkbox>
 
             </div>
-            
+            <div class="error" [hidden]="!showEditWarning">
+              You are trying to edit your own user, this will cause you to log out.
+          </div>
         </form>
         
         </div>
