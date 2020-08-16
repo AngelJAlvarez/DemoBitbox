@@ -1,4 +1,8 @@
 .menu-option-items{
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: space-evenly;
     margin-top: 20px;
     margin-right: 45px;
     margin-bottom: 20px;
@@ -30,17 +34,29 @@
             right: 8px;
 
             .edit{
-                margin-right:20px ;
-                color:#3f729b;
+                color:#8bc34a;
                 cursor: pointer;
+                margin-left:20px;
             }
 
             .trash{
-                color: red;
+                margin-left:20px;
+                color: orangered;
                 cursor: pointer;
             }
+            .ban{
+                margin-left:20px;
+                cursor: pointer;
+                color: #3f729b;
+            }
         }
-       
+        .more-info-box {
+            cursor: pointer;
+            text-align: right;
+            .plus {
+                color:#8bc34a;
+            }
+        }
     }
     
     

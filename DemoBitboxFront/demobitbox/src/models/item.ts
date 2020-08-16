@@ -8,5 +8,6 @@ export class Item {
     price: number;
     creationDate: Date;
     creator: Creator;
+    reasonForDeactivation: string;
 }
 

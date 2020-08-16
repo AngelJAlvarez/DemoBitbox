@@ -1,5 +1,3 @@
-import { UserLogin } from './../../models/userLogin';
-
 import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { HttpClient } from '@angular/common/http';
@@ -54,5 +52,11 @@ export class LoginService {
     return this.user;
   }
 
+  getRolUser() {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+     
+    return decodedToken.roles;
+  }
 
 }

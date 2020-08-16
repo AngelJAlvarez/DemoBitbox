@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   loginUrl: 'http://localhost:8080/authenticate',
-  itemUrl: 'http://localhost:8080/'
+  Url: 'http://localhost:8080/'
 };
 
 

@@ -1,5 +1,8 @@
 import { Role } from './role';
 export class User {
     username: string;
-    roles: Role[];
+    name?: string;
+    roles?: Role[];
+    id?: number;
+    password?: string;
 }

@@ -1,1 +1,89 @@
-<p>user-panel works!</p>
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">User table</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span (click)="showCreateUserModal(createUserModal)" class="table-add float-right mb-3 mr-2 add-user-icon">
+            Add User <mdb-icon fas class="plus" icon="plus" ></mdb-icon>
+        </span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">User Name</th>
+            <th class="text-center">User Roles</th>
+            <th class="text-center">Actions</th>
+            
+          </tr>
+          <tr *ngFor="let user of userList;">
+            <td>
+              <span>{{user.name}}</span>
+            </td>
+            <td>
+              <span *ngFor="let roles of user.roles;" >{{roles.name}}</span>
+            </td>
+            
+            <td>
+              <span class="table-remove">
+                <button type="button" mdbBtn color="success" rounded="true" size="sm" class="my-0" (click)="showEditUserModal(editUserModal, user)">Edit</button>
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(user.id)">Remove</button>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div mdbModal #createUserModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form [formGroup]="formUserCreate" class="text-center border border-light p-5 srink" >
+            <p class="h4 mb-4">Create User</p>
+
+            <input formControlName="username"  type="text" class="form-control mb-4" placeholder="Username">
+    
+            <input formControlName="password"  type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+            <p class="h4 mb-4">Pick roles</p>
+
+            <div class="roles-box">
+              <mdb-checkbox [default]="true" formControlName="userRol">User</mdb-checkbox>
+              <mdb-checkbox [default]="true" formControlName="adminRol">Admin</mdb-checkbox>
+
+            </div>
+            
+        </form>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="createUserModal.hide()" mdbWavesEffect>Close</button>
+          <button type="button" mdbBtn color="primary" (click)="ConfirmCreateUserModal()" [disabled]="!formUserCreate.valid" class="relative waves-light" mdbWavesEffect>Save user</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mdbModal #editUserModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form [formGroup]="formUserEdit" class="text-center border border-light p-5 srink" >
+            <p class="h4 mb-4">Edit User</p>
+
+            <input formControlName="username"  type="text" class="form-control mb-4" placeholder="Username">
+            <p class="h4 mb-4">Pick roles</p>
+
+            <div class="roles-box">
+              <mdb-checkbox [default]="true" formControlName="userRol">User</mdb-checkbox>
+              <mdb-checkbox [default]="true" formControlName="adminRol">Admin</mdb-checkbox>
+
+            </div>
+            
+        </form>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="editUserModal.hide()" mdbWavesEffect>Close</button>
+          <button type="button" mdbBtn color="primary" (click)="ConfirmEditUserModal()" [disabled]="!formUserEdit.valid" class="relative waves-light" mdbWavesEffect>Save user</button>
+        </div>
+      </div>
+    </div>
+  </div>

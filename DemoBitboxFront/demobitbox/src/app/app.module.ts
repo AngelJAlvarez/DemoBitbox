@@ -1,3 +1,4 @@
+import { AlertService } from './../service/alertService/alert.service';
 import { LoginService } from './../service/loginService/login.service';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,13 +9,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptorService } from 'src/service/interceptors/auth-interceptor.service';
 import { ItemService } from 'src/service/itemService/item.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserPanelComponent } from './user-panel/user-panel.component';
+import { ItemInfoComponent } from './item-info/item-info.component';
 
 
 
@@ -27,7 +30,9 @@ const appRoutes: Routes = [
       component: LoginComponent
   },
       { path: 'login', component: LoginComponent },
-      { path: 'home', component: HomeComponent }
+      { path: 'home', component: HomeComponent },
+      { path: 'users', component: UserPanelComponent },
+      { path: 'moreInfo', component: ItemInfoComponent }
   ];
 
 @NgModule({
@@ -36,6 +41,7 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     UserPanelComponent,
+    ItemInfoComponent,
 
   ],
   imports: [
@@ -44,10 +50,11 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
+    ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     FormsModule,
   ],
-  providers: [LoginService, ItemService,
+  providers: [LoginService, ItemService, AlertService,
     {
     provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
