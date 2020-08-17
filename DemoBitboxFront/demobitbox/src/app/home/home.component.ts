@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
   priceReductionsToEdit = new PriceReduction();
   checkOverlaping: boolean;
   suppliers: Supplier[];
+  errorEdite: boolean;
 
   constructor(private loginService: LoginService,
               public router: Router,
@@ -200,7 +201,6 @@ export class HomeComponent implements OnInit {
     this.creator = new Creator();
     this.creator.id = this.formItemEdit.get('creator').value;
     this.itemSelectedToEdit.creator = this.creator;
-    console.log(this.itemSelectedToEdit.priceReduction);
     this.itemSelectedToEdit.priceReduction.forEach(priceReductionInItem => {
       let e2start = new Date(priceReductionInItem.startDate);
       let e2end = new Date(priceReductionInItem.endDate);
@@ -214,10 +214,14 @@ export class HomeComponent implements OnInit {
       if (this.priceReductionsToEdit.endDate !== null
           && this.priceReductionsToEdit.startDate !== null
           && this.priceReductionsToEdit.reducedPrice !== null) {
-          // tslint:disable-next-line: max-line-length
-          this.itemSelectedToEdit.priceReduction.push({startDate: this.priceReductionsToEdit.startDate, endDate: this.priceReductionsToEdit.endDate, reducedPrice: this.priceReductionsToEdit.reducedPrice});
-      }
-      console.log(this.itemSelectedToEdit.priceReduction);
+            if (this.priceReductionsToEdit.startDate > this.priceReductionsToEdit.endDate) {
+              this.errorEdite = true;
+            } else {
+              this.errorEdite = false;
+              // tslint:disable-next-line: max-line-length
+              this.itemSelectedToEdit.priceReduction.push({startDate: this.priceReductionsToEdit.startDate, endDate: this.priceReductionsToEdit.endDate, reducedPrice: this.priceReductionsToEdit.reducedPrice});
+            }
+          }
       if (this.formItemEdit.get('supplier').value) {
         if (this.itemSelectedToEdit.suppliers.find(element => element.name === this.formItemEdit.get('supplier').value) === undefined) {
           // tslint:disable-next-line: max-line-length
@@ -226,7 +230,7 @@ export class HomeComponent implements OnInit {
             if (data) {
              this.getItemByFilter();
              this.editModal.hide();
-             this.formItemEdit.get('supplier').setValue(null)
+             this.formItemEdit.get('supplier').setValue(null);
              this.alertService.showSuccess('Successful edit', 'Item Edit');
            }
           }, error => {
@@ -236,15 +240,19 @@ export class HomeComponent implements OnInit {
           this.alertService.showError('This Supplier already are asociated with the item', 'Item Edit');
         }
       } else {
-        this.itemService.editItem(this.itemSelectedToEdit).subscribe(data => {
-          if (data) {
-           this.getItemByFilter();
-           this.editModal.hide();
-           this.alertService.showSuccess('Successful edit', 'Item Edit');
-         }
-        }, error => {
-         this.alertService.showError('An error has occurred', 'Item Edit');
-       });
+        if (this.errorEdite) {
+          this.alertService.showError('You cannot select a start date higher than the end date', 'Item Edit');
+        } else {
+          this.itemService.editItem(this.itemSelectedToEdit).subscribe(data => {
+            if (data) {
+             this.getItemByFilter();
+             this.editModal.hide();
+             this.alertService.showSuccess('Successful edit', 'Item Edit');
+           }
+          }, error => {
+           this.alertService.showError('An error has occurred', 'Item Edit');
+         });
+        }
       }
     } else {
       this.alertService.showError('A reduced price already exists on that date', 'Item Edit');

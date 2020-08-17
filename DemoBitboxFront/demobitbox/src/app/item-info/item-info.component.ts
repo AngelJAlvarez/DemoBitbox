@@ -27,7 +27,6 @@ export class ItemInfoComponent implements OnInit {
       this.router.navigate(['home']);
     } else {
       this.item = this.itemService.getItemToMoreInfo();
-      console.log(this.item)
     }
   }
 
