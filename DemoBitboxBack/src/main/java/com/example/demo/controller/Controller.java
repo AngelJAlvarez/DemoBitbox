@@ -104,6 +104,13 @@ public class Controller {
         return true;
     }
 
+    @PreAuthorize("hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')")
+    @GetMapping("/getUsers")
+    public List<UserDto> findUsers() {
+        return UserConverter.entitiesToDtos(userRepository.findAll());
+    }
+
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/editUser")
     public boolean editUser(@RequestBody UserDto userDto) {
@@ -117,13 +124,6 @@ public class Controller {
         System.out.println(userdto.getName());
         userService.createUser(userdto);
         return true;
-    }
-
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/getUsers")
-    public List<UserDto> findUsers() {
-        return UserConverter.entitiesToDtos(userRepository.findAll());
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
