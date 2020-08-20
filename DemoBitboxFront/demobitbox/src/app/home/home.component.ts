@@ -12,7 +12,7 @@ import { Creator } from 'src/models/creator';
 import { States } from '../../models/enum';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ModalDirective } from 'angular-bootstrap-md';
-import { User } from 'src/models/User';
+import { User } from 'src/models/user';
 import { PriceReduction } from 'src/models/priceReduction';
 @Component({
   selector: 'app-home',
